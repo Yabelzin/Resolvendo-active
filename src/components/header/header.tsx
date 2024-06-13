@@ -1,5 +1,6 @@
-import { useState } from "react";
+import  React from "react";
 import { Container, ListItem } from "./styles";
+import { Link, useNavigate } from "react-router-dom";
 
 interface Props {
     title?: string,
@@ -9,16 +10,23 @@ interface Props {
 
 function Header({ title, name, age }: Props) {
     
-    const [item, setItem] = useState(true);
+    const navigate = useNavigate();
 
     return (
+        <div>
+            <Container>
+                <Link style={{textDecoration: 'none'}} to={"/"}>
+                    <ListItem active={true}>Home</ListItem>
+                </Link>
+                <ListItem active={false}>Contact</ListItem>
+                <ListItem active={false}>Fotos</ListItem>
+                <Link style={{textDecoration: 'none'}} to={"/user-info"}>
+                    <ListItem onClick={() => {navigate("/user-info")}} active={true}>User Info</ListItem>
+                </Link>
 
+            </Container>  
+        </div>
 
-        <Container>
-            <ListItem active={true}>Home</ListItem>
-            <ListItem active={false}>Contato</ListItem>
-            <ListItem active={true}>Fotos</ListItem>
-        </Container>
     )
 }
 
